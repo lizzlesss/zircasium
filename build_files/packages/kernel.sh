@@ -41,7 +41,7 @@ fi
 
 # Lock kernel packages
 dnf versionlock add "kernel-p03-${KERNEL_VERSION}" || true
-#dnf versionlock add "kernel-cachyos-lto-modules-${KERNEL_VERSION}" || true
+dnf versionlock add "kernel-cachyos-p03-modules-${KERNEL_VERSION}" || true
 
 
 # Thank you @renner03 for this part
