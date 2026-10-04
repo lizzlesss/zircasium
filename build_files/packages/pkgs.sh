@@ -5,10 +5,10 @@ set -eoux pipefail
 #dnf -y install intel-media-driver
 
 # some bullshit to get nbfc working past 44
-dnf install -y --allowerasing \
-    lua5.4-libs \
-    openssl3-devel \
-    openssl3-libs
+#dnf install -y --allowerasing \
+#    lua5.4-libs \
+#    openssl3-devel \
+#    openssl3-libs
 
 # packages
 dnf -y install \
