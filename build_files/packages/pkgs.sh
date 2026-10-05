@@ -13,6 +13,7 @@ set -eoux pipefail
 # packages
 dnf -y install \
     android-tools \
+    g++ \
     mangohud \
     intel-lpmd \
     https://github.com/nbfc-linux/nbfc-linux/releases/download/0.5.3/fedora-44-nbfc-linux-0.5.3-1.x86_64.rpm
