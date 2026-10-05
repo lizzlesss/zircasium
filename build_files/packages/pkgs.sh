@@ -27,10 +27,4 @@ dnf install -y \
     --allowerasing \
     libcap-ng libcap-ng-devel procps-ng procps-ng-devel libbpf scx-scheds-git scx-tools-git scx-manager ananicy-cpp
 
-dnf -y copr enable mochaa/android-udev-rules
-
-dnf -y install \
-    android-udev-rules
-    
-dnf -y copr disable mochaa/android-udev-rules
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
