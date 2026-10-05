@@ -13,9 +13,9 @@ set -eoux pipefail
 # packages
 dnf -y install \
     android-tools \
+    mangohud \
     intel-lpmd \
     https://github.com/nbfc-linux/nbfc-linux/releases/download/0.5.3/fedora-44-nbfc-linux-0.5.3-1.x86_64.rpm
-    #mangohud \
 
 # copr
 dnf copr enable -y bieszczaders/kernel-cachyos-addons
@@ -24,6 +24,6 @@ dnf copr enable -y bieszczaders/kernel-cachyos-addons
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
     --allowerasing \
-    libcap-ng-devel procps-ng-devel scx-scheds-git scx-tools-git scx-manager
+    libcap-ng libcap-ng-devel procps-ng procps-ng-devel libbpf scx-scheds-git scx-tools-git scx-manager
 
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
