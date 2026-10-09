@@ -10,7 +10,7 @@ set -eoux pipefail
 #    openssl3-devel \
 #    openssl3-libs
 
-dnf install -y \
+dnf remove -y \
     dms \
     niri
 
