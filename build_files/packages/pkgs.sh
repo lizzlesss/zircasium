@@ -34,13 +34,14 @@ echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:aven
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
     --allowerasing \
-    libcap-ng libcap-ng-devel procps-ng procps-ng-devel libbpf scx-scheds-git scx-tools-git scx-manager
+    libcap-ng-devel procps-ng-devel scx-scheds-git scx-tools-git scx-manager
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
     --allowerasing \
     --setopt install_weak_deps=false \
-    niri
+    niri \
+    swaybg
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:dms-git" \
