@@ -10,6 +10,10 @@ set -eoux pipefail
 #    openssl3-devel \
 #    openssl3-libs
 
+dnf install -y \
+    dms \
+    niri
+
 # packages
 dnf -y install \
     android-tools \
@@ -24,7 +28,7 @@ dnf copr enable -y avengemedia/dms-git
 dnf copr enable -y avengemedia/danklinux
 
 echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalter:niri-git.repo
-#echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:avengemedia:danklinux.repo
+echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:avengemedia:danklinux.repo
 
 # Adds required package for the scheduler
 dnf install -y \
