@@ -19,6 +19,9 @@ dnf -y install \
 
 # copr
 dnf copr enable -y bieszczaders/kernel-cachyos-addons
+dnf copr enable -y yalter/niri-git
+dnf copr enable -y avengemedia/dms-git
+dnf copr enable -y avengemedia/danklinux
 
 # Adds required package for the scheduler
 dnf install -y \
@@ -26,4 +29,24 @@ dnf install -y \
     --allowerasing \
     libcap-ng libcap-ng-devel procps-ng procps-ng-devel libbpf scx-scheds-git scx-tools-git scx-manager
 
-dnf -y copr disable bieszczaders/kernel-cachyos-addons
+dnf install -y \
+    --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
+    --allowerasing \
+    niri
+
+dnf install -y \
+    --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:dms-git" \
+    --allowerasing \
+    dms-git
+
+dnf install -y \
+    --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
+    --allowerasing \
+    dankcalendar-git \
+    dms-greeter-git \
+    quickshell-git
+
+dnf copr disable -y bieszczaders/kernel-cachyos-addons
+dnf copr disable -y yalter/niri-git
+dnf copr disable -y avengemedia/dms-git
+dnf copr disable -y avengemedia/danklinux
