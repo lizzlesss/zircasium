@@ -39,6 +39,7 @@ dnf install -y \
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
     --allowerasing \
+    --setopt install_weak_deps=false \
     niri
 
 dnf install -y \
