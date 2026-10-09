@@ -23,6 +23,9 @@ dnf copr enable -y yalter/niri-git
 dnf copr enable -y avengemedia/dms-git
 dnf copr enable -y avengemedia/danklinux
 
+echo "priority=1" > /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalter:niri-git.repo
+echo "priority=1" > /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:avengemedia:dms-git.repo
+
 # Adds required package for the scheduler
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
@@ -37,7 +40,7 @@ dnf install -y \
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:dms-git" \
     --allowerasing \
-    dms-git
+    dms
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
