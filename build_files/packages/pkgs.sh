@@ -10,9 +10,8 @@ set -eoux pipefail
 #    openssl3-devel \
 #    openssl3-libs
 
-#dnf remove -y \
-#    dms \
-#    niri
+dnf remove -y \
+    niri
 
 # packages
 dnf -y install \
@@ -36,19 +35,14 @@ dnf install -y \
     --allowerasing \
     libcap-ng-devel procps-ng-devel scx-scheds-git scx-tools-git scx-manager
 
-#dnf install -y \
-#    --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
-#    --allowerasing \
-#    --setopt install_weak_deps=false \
-#    niri \
-#    swaybg
+dnf install -y \
+    --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
+    --allowerasing \
+    --setopt install_weak_deps=false \
+    niri \
+    swaybg
 
 dnf update -y --refresh --allowerasing
-
-#dnf install -y \
-#    --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:dms-git" \
-#    --allowerasing \
-#    dms
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
