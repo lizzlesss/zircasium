@@ -1,5 +1,6 @@
 FROM scratch AS ctx
 COPY build_files /
+COPY system_files /system_files
 
 FROM ghcr.io/zirconium-dev/zirconium:latest
 
