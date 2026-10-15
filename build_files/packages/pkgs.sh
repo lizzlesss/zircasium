@@ -42,7 +42,10 @@ dnf install -y \
     niri \
     swaybg
 
-dnf update -y --refresh --allowerasing
+dnf install -y \
+    --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:dms-git" \
+    --allowerasing \
+    dms
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
