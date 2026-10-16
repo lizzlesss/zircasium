@@ -21,7 +21,7 @@ dnf -y install \
     https://github.com/nbfc-linux/nbfc-linux/releases/download/0.5.3/fedora-44-nbfc-linux-0.5.3-1.x86_64.rpm
 
 # copr
-dnf copr enable -y bieszczaders/kernel-cachyos-addons
+#dnf copr enable -y bieszczaders/kernel-cachyos-addons
 dnf copr enable -y yalter/niri-git
 dnf copr enable -y avengemedia/dms-git
 dnf copr enable -y avengemedia/danklinux
@@ -30,10 +30,10 @@ echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalt
 echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:avengemedia:danklinux.repo
 
 # Adds required package for the scheduler
-dnf install -y \
-    --enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
-    --allowerasing \
-    libcap-ng-devel procps-ng-devel scx-scheds scx-tools scx-manager
+#dnf install -y \
+#    --enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
+#    --allowerasing \
+#    libcap-ng-devel procps-ng-devel scx-scheds scx-tools scx-manager
 
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:yalter:niri-git" \
@@ -54,7 +54,7 @@ dnf install -y \
     dms-greeter-git \
     quickshell-git
 
-dnf copr disable -y bieszczaders/kernel-cachyos-addons
+#dnf copr disable -y bieszczaders/kernel-cachyos-addons
 dnf copr disable -y yalter/niri-git
 dnf copr disable -y avengemedia/dms-git
 dnf copr disable -y avengemedia/danklinux
