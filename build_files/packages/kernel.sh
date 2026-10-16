@@ -1,15 +1,7 @@
 #!/usr/bin/bash
 set -eoux pipefail
 
-#dnf copr enable -y bieszczaders/kernel-cachyos-addons
-
-# Adds required package for the scheduler
-#dnf install -y \
-    #--enablerepo="copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons" \
-    #--allowerasing \
-    #libcap-ng libcap-ng-devel bore-sysctl cachyos-ksm-settings procps-ng procps-ng-devel uksmd libbpf scx-scheds-git scx-tools-git scx-manager cachyos-settings ananicy-cpp
-
-dnf copr enable -y binarytree/linux-zen-fedora
+dnf copr enable -y sirlucjan/kernel-devario
 
 # Remove useless kernels
 readarray -t OLD_KERNELS < <(rpm -qa 'kernel-*')
@@ -22,16 +14,16 @@ fi
 
 # Install kernel packages (noscripts required for 43+)
 dnf install -y \
-    --enablerepo="copr:copr.fedorainfracloud.org:binarytree:linux-zen-fedora" \
+    --enablerepo="copr:copr.fedorainfracloud.org:sirlucjan:kernel-devario" \
     --allowerasing \
     --setopt=tsflags=noscripts \
-    kernel-zen-v3 \
-    kernel-zen-v3-devel-matched \
-    kernel-zen-v3-devel \
-    kernel-zen-v3-modules \
-    kernel-zen-v3-core
+    kernel-devario \
+    kernel-devario-devel-matched \
+    kernel-devario-devel \
+    kernel-devario-modules \
+    kernel-devario-core
 
-KERNEL_VERSION="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}\n' kernel-zen-v3)"
+KERNEL_VERSION="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}\n' kernel-devario)"
 
 # Depmod (required for fedora 43+)
 depmod -a "${KERNEL_VERSION}"
@@ -44,8 +36,8 @@ if [[ -f "${VMLINUZ_SOURCE}" ]]; then
 fi
 
 # Lock kernel packages
-dnf versionlock add "kernel-zen-v3-${KERNEL_VERSION}" || true
-dnf versionlock add "kernel-zen-v3-modules-${KERNEL_VERSION}" || true
+dnf versionlock add "kernel-devario-${KERNEL_VERSION}" || true
+dnf versionlock add "kernel-devario-modules-${KERNEL_VERSION}" || true
 
 
 # Thank you @renner03 for this part
