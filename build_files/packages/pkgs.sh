@@ -46,7 +46,6 @@ dnf upgrade -y \
 dnf install -y \
     --enablerepo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
     --allowerasing \
-    dankcalendar-git \
     dms-greeter-git \
     quickshell-git
 
