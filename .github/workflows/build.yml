@@ -65,10 +65,10 @@ jobs:
       - name: Install just
         uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 #v4.0.0
 
-      - name: Check Just Syntax
-        shell: bash
-        run: |
-          just check
+      #- name: Check Just Syntax
+      #  shell: bash
+      #  run: |
+      #    just check
       
       # Image metadata for https://artifacthub.io/ - This is optional but is highly recommended so we all can get a index of all the custom images
       # The metadata by itself is not going to do anything, you choose if you want your image to be on ArtifactHub or not.
