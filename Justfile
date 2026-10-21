@@ -100,6 +100,42 @@ build $target_image=image_name $tag=default_tag:
         --tag "${target_image}:${tag}" \
         .
 
+# Split the image for smaller updates (New)!
+rechunk $target_image=image_name $tag=default_tag:
+    #!/usr/bin/env bash
+
+    set -xeuo pipefail
+
+    # TODO: pin chunkah image to hash once mature enough
+    # You may run into space issues on github runners as we are making a
+    # complete copy of the image, which likely has no shared layers, unless your
+    # base image is also using chunkah
+    CHUNKAH_CONFIG_FILE="$(mktemp)"
+
+    # You may omit the current directory here if you are confident that you
+    # won't run out of space on /tmp for your image
+    CHUNKAH_OUTPUT_DIR="$(mktemp -d ./"${target_image}"_chunkah_XXXXXX)"
+
+    trap 'rm -f "${CHUNKAH_CONFIG_FILE}"; rm -rf "${CHUNKAH_OUTPUT_DIR}"' EXIT
+    podman inspect "${target_image}:${tag}" > "${CHUNKAH_CONFIG_FILE}"
+
+    podman run --rm \
+      --mount=type=image,src="${target_image}:${tag}",target=/chunkah \
+      -v "${CHUNKAH_CONFIG_FILE}:/chunkah-config.json:ro,Z" \
+      -v "${CHUNKAH_OUTPUT_DIR}:/run/out:Z" \
+      quay.io/coreos/chunkah:latest \
+      build \
+      --verbose \
+      --compressed \
+      --max-layers 128 \
+      --prune /sysroot/ \
+      --label ostree.commit- --label ostree.final-diffid- \
+      --config /chunkah-config.json \
+      --output oci:/run/out/chunked
+
+    CHUNKED_IMAGE="$(podman pull "oci:${CHUNKAH_OUTPUT_DIR}/chunked")"
+    podman tag "${CHUNKED_IMAGE}" "${target_image}:${tag}"
+
 # Command: _rootful_load_image
 # Description: This script checks if the current user is root or running under sudo. If not, it attempts to resolve the image tag using podman inspect.
 #              If the image is found, it loads it into rootful podman. If the image is not found, it pulls it from the repository.
